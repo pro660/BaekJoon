@@ -10,8 +10,16 @@
 
 ---
 
-## 🔧 사용 언어 (Top 3)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=pro660&repo=BaekJoon&langs_count=3&theme=tokyonight)
+## 🔧 사용 언어 (이 리포지토리 기준 • Top 3, %)
+<!-- LANGUAGES-START -->
+<!-- 이 영역은 GitHub Actions에 의해 자동 갱신됩니다. 수동으로 편집하지 마세요. -->
+<!-- LANGUAGES-END -->
+
+> ※ 위 표는 리포지토리의 실제 파일 기준으로 계산됩니다. (GitHub Languages API)  
+> ※ 백업용 배지:
+>
+> ![Top language](https://img.shields.io/github/languages/top/pro660/BaekJoon?style=for-the-badge&logo=c&logoColor=white&color=blue)
+> ![Languages count](https://img.shields.io/github/languages/count/pro660/BaekJoon?style=for-the-badge&color=orange)
 
 ---
 

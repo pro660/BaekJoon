@@ -1,0 +1,114 @@
+name: Update repo languages (Top 3) in README
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # 매일 00:00 UTC 자동 갱신
+  workflow_dispatch:      # 수동 실행도 가능
+  push:
+    paths:
+      - "**/*.c"
+      - "**/*.cpp"
+      - "**/*.h"
+      - "**/*.hpp"
+      - "**/*.py"
+      - "**/*.java"
+      - "**/*.js"
+      - "**/*.ts"
+      - "**/*.rs"
+      - "**/*.go"
+      - "**/*.kt"
+      - "**/*.swift"
+      - "**/*.rb"
+      - "**/*.php"
+      - "**/*.cs"
+      - "**/*.m"
+      - "**/*.mm"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Top 3 language table from GitHub API
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}   # ex) pro660/BaekJoon
+        run: |
+          set -e
+
+          # 1) 언어 바이트 수 JSON 가져오기 (Repos Languages API)
+          json=$(curl -s -H "Accept: application/vnd.github+json" \
+                       -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+                       https://api.github.com/repos/${REPO}/languages)
+
+          # 합계 계산
+          total=$(echo "$json" | jq 'to_entries | map(.value) | add // 0')
+
+          # 2) Top 3 계산 + 표/프로그레스바 생성
+          if [ -z "$total" ] || [ "$total" = "0" ]; then
+            table="| Language | Share |\n|---|---:|\n| (no code) | 0% |\n"
+          else
+            # 막대(시각화) 길이 20칸 기준
+            table=$(echo "$json" | jq -r --arg total "$total" '
+              to_entries
+              | sort_by(.value) | reverse
+              | .[0:3]                                      # Top 3
+              | map({lang: .key, pct: ((.value / ($total|tonumber)) * 100)})
+              | (["Language","Share"] | @tsv),
+                (.[] | [ .lang, (.pct) ] | @tsv)
+            ' | awk -F'\t' '
+              BEGIN{
+                print "| Language | Share |";
+                print "|---|---:|";
+              }
+              NR==1{next}  # 헤더 스킵
+              {
+                pct=$2+0; if(pct>100) pct=100; if(pct<0) pct=0;
+                len=int(pct/5); bar="";
+                for(i=0;i<len && i<20;i++) bar=bar "█";
+                for(i=len;i<20;i++) bar=bar "░";
+                printf("| %s | %s%% %s |\n",$1, sprintf("%.2f", pct), bar);
+              }')
+          fi
+
+          # 3) README 지정 영역 교체
+          file="README.md"
+          start="<!-- LANGUAGES-START -->"
+          end="<!-- LANGUAGES-END -->"
+
+          if [ ! -f "$file" ]; then
+            echo "# README" > "$file"
+          fi
+
+          if ! grep -q "$start" "$file"; then
+            cat <<'EOF' >> "$file"
+
+## 🔧 사용 언어 (이 리포지토리 기준 • Top 3, %)
+<!-- LANGUAGES-START -->
+<!-- 이 영역은 GitHub Actions에 의해 자동 갱신됩니다. 수동으로 편집하지 마세요. -->
+<!-- LANGUAGES-END -->
+EOF
+          fi
+
+          awk -v start="$start" -v end="$end" -v repl="$table" '
+            BEGIN{insec=0}
+            {
+              if ($0 ~ start) {print; print repl; insec=1; next}
+              if ($0 ~ end) {insec=0}
+              if (!insec) print
+            }
+          ' "$file" > README.tmp && mv README.tmp "$file"
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "No changes."
+          else
+            git add README.md
+            git commit -m "chore(readme): update repo language Top 3"
+            git push
+          fi

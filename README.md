@@ -11,9 +11,9 @@
 ---
 
 ## 🔧 사용 언어 (이 리포지토리 기준)
-![Top language](https://img.shields.io/github/languages/top/pro660/<REPO_NAME>)
-![Languages count](https://img.shields.io/github/languages/count/pro660/<REPO_NAME>)
-![Code size](https://img.shields.io/github/languages/code-size/pro660/<REPO_NAME>)
+![Top language](https://img.shields.io/github/languages/top/pro660/<BaekJoon>)
+![Languages count](https://img.shields.io/github/languages/count/pro660/<BaekJoon>)
+![Code size](https://img.shields.io/github/languages/code-size/pro660/<BaekJoon>)
 
 <!-- 아래 마커는 (선택) GitHub Actions로 자동 갱신되는 표 자리 -->
 <!-- LANGUAGES-START -->

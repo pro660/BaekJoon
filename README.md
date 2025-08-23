@@ -6,7 +6,7 @@
 ---
 
 ## 📊 Solved.ac 프로필
-[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=여기에_아이디)](https://solved.ac/여기에_아이디)
+[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=여기에_아이디)](https://solved.ac/gudtjr1017)
 
 ---
 
@@ -18,7 +18,7 @@
 ---
 
 ## 🔧 사용 언어
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=깃허브아이디&layout=compact)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=pro660&layout=compact)
 
 ---
 

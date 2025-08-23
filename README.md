@@ -7,7 +7,7 @@
 ---
 <div align="center">
   
-[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=qkrcksdn0321)](https://solved.ac/profile/gudtjr1017)  
+[![Solved.ac Profile](http://mazassumnida.wtf/api/v2/generate_badge?boj=gudtjr1017)](https://solved.ac/profile/gudtjr1017)  
 
 </div>
 

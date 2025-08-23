@@ -10,14 +10,8 @@
 
 ---
 
-## 🔧 사용 언어 (이 리포지토리 기준)
-![Top language](https://img.shields.io/github/languages/top/pro660/BaekJoon?style=for-the-badge&logo=c&logoColor=white&color=blue)
-![Languages count](https://img.shields.io/github/languages/count/pro660/BaekJoon?style=for-the-badge&color=orange)
-![Code size](https://img.shields.io/github/languages/code-size/pro660/BaekJoon?style=for-the-badge&color=green)
-
-<!-- 아래 마커는 (선택) GitHub Actions로 자동 갱신되는 표 자리 -->
-<!-- LANGUAGES-START -->
-<!-- LANGUAGES-END -->
+## 🔧 사용 언어 (Top 3)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=pro660&repo=BaekJoon&langs_count=3&theme=tokyonight)
 
 ---
 

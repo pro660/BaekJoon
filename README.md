@@ -13,14 +13,6 @@
 
 ---
 
-<div align="center">
-  
-![Solved.ac solved count](http://mazandi.herokuapp.com/api?handle=gudtjr1017&theme=warm)
-
-</div>
-
----
-
 ## 🎯 목표
 
 - 알고리즘 실력 향상 및 코딩 테스트 대비  
